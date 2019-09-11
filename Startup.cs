@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using vega.Mapping;
 using vega.Persistence;
+using vega.Core;
 
 namespace vega
 {
@@ -23,6 +24,9 @@ namespace vega
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IVehicleRepository, VehicleRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            
             // Auto Mapper Configurations
             var mappingConfig = new MapperConfiguration(mc =>
             {
